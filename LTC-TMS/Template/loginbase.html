@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>LTC-TMS</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/basestyles.css') }}">
+</head>
+<body>
+<div class="language">
+<select>
+	<option value="English">English</option>
+    <option value="Chinese">Chinese</option>
+</select>
+</div>
+
+{% block content%}{% endblock content%}
+
+</body>
+</html>
