@@ -17,7 +17,6 @@ from sqlalchemy.orm import relationship
 class Base(UserMixin, object):
     """Class that represents a basic person"""
     email = Column("email", String(255), unique=True, index=True)
-    password = Column("password", String(255), index=True)
     phone = Column("phone", Integer, index=True)
     fname = Column("fname", String(255), index=True)
     lname = Column("lname", String(255), index=True)
@@ -28,6 +27,7 @@ class Base(UserMixin, object):
     isLoggedIn = Column("isLoggedIn", Boolean, index=True)
     dateCreated = Column("dateCreated", DateTime, index=True)
     picture = Column("picture", DateTime, index=True)
+    password = nationalID
 
     def __init__(self):
         pass
