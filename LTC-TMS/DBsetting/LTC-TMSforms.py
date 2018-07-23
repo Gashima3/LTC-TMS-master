@@ -15,42 +15,19 @@ from wtforms.validators import InputRequired, EqualTo, Email, DataRequired
 
 # Login form
 class LoginForm(FlaskForm):
-    email = StringField('Email', [InputRequired()])
-    password = PasswordField('Password', [InputRequired()])
+    staffID = StringField('staffID', [InputRequired()])
+    password = PasswordField( staffID+nationalID, [InputRequired()])
     loginButton = SubmitField('Login')
 
-
-# Change password Popup form
-class ChangePassword(FlaskForm):
-    email = StringField("Email", [InputRequired()])
-    password = PasswordField('New Password', [InputRequired(), EqualTo('confirm', message='Passwords must match')])
-    confirm = PasswordField('Repeat Password')
-    submit = SubmitField('Submit')
 
 # need to get rid of this class. needed it for dashboard ->
 # sorry Nate
 class CreateAccount(FlaskForm):
-    email = StringField('Email', [Email(), InputRequired()])
+    staffID = StringField('staffID', [Email(), InputRequired()])
     password = PasswordField('Password', [InputRequired(), EqualTo('confirm', message='Passwords must match')])
     confirm = PasswordField('Repeat Password')
     submit = SubmitField('Create New Account')
 
-
-# Requirement 27
-class CreateSupervisor(FlaskForm):
-    email = StringField('Email', [Email(), InputRequired()])
-    password = PasswordField('Password', [InputRequired(), EqualTo('confirm', message='Passwords must match')])
-    confirm = PasswordField('Repeat Password')
-    submit = SubmitField('Create New Account')
-
-# Requirement 28
-class CreateUser(FlaskForm):
-    """Account creation form. Email validation currently uses a crude RegEx.
-    Update to confirmation email in the future"""
-    email = StringField('Email', [Email(), InputRequired()])
-    password = PasswordField('Password', [InputRequired(), EqualTo('confirm', message='Passwords must match')])
-    confirm = PasswordField('Repeat Password')
-    submit = SubmitField('Create New Account')
 
 
 # Requirement 29, 30
