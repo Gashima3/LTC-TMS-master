@@ -1,8 +1,8 @@
 #
 # Database Models
-# author: Mason Hoffman, Nathaniel Yost
-# created: 2/13/2018
-# latest: 3/6/2018
+# author: Mason Hoffman, Nathaniel Yost, Gama F. Ahimsa
+# created: 7/23/2018
+# latest:
 # purpose: Model classes for interaction with SQLAlchemy
 #
 
@@ -16,17 +16,14 @@ from sqlalchemy.orm import relationship
 # Base class inherited by Supervisor and User class
 class Base(UserMixin, object):
     """Class that represents a basic person"""
-    supervisorID = Column("supervisorID", Integer, index=True)
     email = Column("email", String(255), unique=True, index=True)
     password = Column("password", String(255), index=True)
     phone = Column("phone", Integer, index=True)
     fname = Column("fname", String(255), index=True)
-    mname = Column("mname", String(255), index=True)
     lname = Column("lname", String(255), index=True)
     gender = Column("gender", String(255), index=True)
     birthday = Column("birthday", Date, index=True)
-    affiliation = Column("affiliation", String(255), index=True)
-    ethnicity = Column("ethnicity", String(255), index=True)
+    nationalID = Column("nationID", String(255), index=True)
     active = Column("active", Boolean, index=True)
     isLoggedIn = Column("isLoggedIn", Boolean, index=True)
     dateCreated = Column("dateCreated", DateTime, index=True)
@@ -36,72 +33,60 @@ class Base(UserMixin, object):
         pass
 
 # User account class. Child of Base
-class User(Base, db.Model):
+class Patients(Base, db.Model):
     """User that is a child of base"""
-    __tablename__ = "users"
+    __tablename__ = "patients"
+    roomno = Column("roomNo.", String(255), index=True)
+    cnaID = Column("cnaID", Integer, index=True)
+    appointmentRecord = Column("appointmentRecord", String(255), index=True)
+    medicalRecord = Column("medicalRecord", DateTime, index=True)
+    description = Column("description", String(255), index=True)
     lastActive = Column("lastActive", DateTime, index=True)
-    userID = Column("userID", Integer, primary_key=True)
-    role="user"
-    
-    # user constructor
-    def __init__(self, email=None, password=None):
+    patientID = Column("patientID", Integer, primary_key=True)
+    role = "patient"
+
+    # patients constructor
+    def __init__(self, patientID=None, password=None):
         # Call parent constructor
-        super(User, self).__init__()
-        self.email = email
+        super(Patients, self).__init__()
+        self.patientID = patientID
         self.password = password
         self.dateCreated = datetime.utcnow()
         self.lastActive = datetime.utcnow()
-        
+
     # get_id override for userID
     def get_id(self):
-        return str(self.userID)
+        return str(self.patientID)
 
     # the informal string representation of a user object
     def __repr__(self):
-        return '<User %r>' % (self.email)
+        return '<User %r>' % (self.patientID)
 
-# Supervisor account class. Child of Base
-class Supervisor(Base, db.Model):
-    """Supervisor that is a child of base"""
-    __tablename__ = "supervisors"
-    supervisorID = Column("supervisorID", Integer, primary_key=True)
-    role="supervisor"
+# Stuff class. Child of Base
+class Staff(Base, db.Model):
+    """Staff that is a child of base"""
+    __tablename__ = "staff"
+    staffID = Column("staffID", Integer, primary_key=True)
+    position = Column("staffPosition", String(255), index=True)
+    cv = Column("CV", DateTime, index=True)
+    license= Column("License", DateTime, index=True)
+    role="staff"
 
-    # get_id override for supervisorID   
+    # get_id override for supervisorID
     def get_id(self):
-        return str(self.supervisorID)
+        return str(self.staffID)
 
-    def __init__(self, email=None, password=None):
+    def __init__(self, staffID=None, password=None):
         # Call parent constructor
-        super(Supervisor, self).__init__()
-        self.email = email
+        super(Staff, self).__init__()
+        self.staffID = staffID
         self.password = password
         self.dateCreated = datetime.utcnow()
         self.lastActive = datetime.utcnow()
 
     def __repr__(self):
-        return "<Supervisor %r>" % (self.email)
+        return "<Staff %r>" % (self.staffID)
 
-
-# Admin account class
-class Admin(UserMixin,db.Model):
-    __tablename__ = 'admin'
-    adminID = Column('adminID', Integer, primary_key=True, index=True)
-    username = Column('username', String(255), index=True)
-    password = Column('password', String(255), index=True)
-    role="admin"
-    
-    # get_id override for adminID
-    def get_id(self):
-        return str(self.adminID)
-        
-    def __init__(self, username, password):
-        self.username=username
-        self.password=password
-        
-    def __repr__(self):
-        return "<Admin %r>" % (self.username)
-        
 
 class Request(db.Model):
     __tablename__="request"
@@ -112,13 +97,13 @@ class Request(db.Model):
     requestDescription=Column('requestDescription', String(255), index=True)
     isApproved=Column('isApproved', Boolean, index=True)
     dateRequested=Column('dateRequested', Date, index=True)
-    
+
     def __init__(self):
         pass
-    
+
     def __repr__(self):
         return "<Request taskID:%r>" % (self.taskID)
-        
+
 
 class Task(db.Model):
     """
@@ -127,7 +112,7 @@ class Task(db.Model):
     Steps"""
     __tablename__ = 'task'
     taskID = Column('taskID', Integer, primary_key=True)
-    supervisorID = Column('supervisorID', Integer)
+    staffID = Column('supervisorID', Integer)
     title = Column('title', String(255))
     description = Column('description', String(255))
     activated = Column('activated', String(255))
@@ -196,63 +181,7 @@ class Keyword(db.Model):
         self.taskID = task_id
         self.word = word
 
-
-class SurveyForm(db.Model):
-    __tablename__ = 'surveyForm'
-    formID = Column('formID', Integer, unique = True, index=True, primary_key=True)
-    supervisorID = Column('supervisorID', Integer, index=True)
-    formTitle = Column('formTitle', String(255), index=True)
-    description = Column('description', String(255), index=True)
-    dateCreated = Column('dateCreated', Date, index=True)
-    dateModified = Column('dateModified', Date, index=True)
-    isActive = Column('isActive', Boolean, index=True)
-    survey_quest = relationship("SurveyQuest", back_populates="survey_form")
-	
-
-	
     def __init__(self, formTitle=None, surv_quest=None):
         super(SurveyQuest, self).__init__()
         self.formTitle = formTitle
         survey_quest = surv_quest
-		
-class SurveyQuest(db.Model):
-    __tablename__ = 'surveyQuest'
-    questID = Column('questID', Integer, unique = True, index=True, primary_key=True) 
-    formID = Column(Integer, ForeignKey('surveyForm.formID'))
-    questType = Column('questType', String(255), index=True)
-    questionText = Column('questText', String(255), index=True)
-    questOrder = Column('questOrder', Integer, index=True)
-    isActive = Column('isActive', Boolean, index=True)
-    survey_form = relationship("SurveyForm", back_populates="survey_quest")
-	    
-    def __init__(self, questionText=None, questType = None, questionOrder = None):
-        super(SurveyQuest, self).__init__()
-        self.questionText = questionText
-        self.questType = questType
-        self.questOrder = questionOrder            
-
-class SurveyResult(db.Model):
-    __tablename__ = 'surveyResults'
-    resultID = Column('resultID', Integer, unique = True, index=True, primary_key=True) 
-    userID = Column('userID', Integer, index=True) 
-    formID = Column('formID', Integer, index=True) 
-    name = Column('name', String(255), index=True)
-    timeSpent = Column('timeSpent', Integer, index=True)
-    email = Column('email', String(255), index=True)
-    ipAddr = Column('ipAddr', String(255), index=True)
-    results = Column('results', String(255), index=True)
-    date = Column('date', Date, index=True)
-    comments = Column('comments', String(255), index=True)
-   
-    def __init__(self):
-        super(SurveyResult, self).__init__()
-
-class SurveyAssigned(db.Model):
-    __tablename__ = 'assigned'
-    assignedID = Column('assignedID', Integer, unique = True, index=True, primary_key=True) 
-    supervisorID = Column('supervisorID', Integer, index=True)
-    taskID = Column('taskID', Integer, primary_key=True)
-    formID = Column(Integer, ForeignKey('surveyForm.formID'))
-    
-    def __init__(self):
-        super(SurveyAssigned, self).__init__()
