@@ -23,6 +23,8 @@ class Base(UserMixin, object):
     gender = Column("gender", String(255), index=True)
     birthday = Column("birthday", Date, index=True)
     nationalID = Column("nationID", String(255), index=True)
+    bloodType = Column("booldtype", String(255), index=True)
+    contactno = Column("contactno.", String(255), index=True)
     active = Column("active", Boolean, index=True)
     isLoggedIn = Column("isLoggedIn", Boolean, index=True)
     dateCreated = Column("dateCreated", DateTime, index=True)
@@ -77,7 +79,7 @@ class Staff(Base, db.Model):
         role = "CNO"
     else:
         role = "CNA"
-        
+
     # get_id override for supervisorID
     def get_id(self):
         return str(self.staffID)
