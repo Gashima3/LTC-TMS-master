@@ -8,5 +8,5 @@ from wtforms.validators import InputRequired, EqualTo, Email, DataRequired
 # Login form
 class LoginForm(FlaskForm):
     Staff_ID = StringField('staff_ID', [InputRequired()])
-    password = PasswordField( staff_ID + national_ID , [InputRequired()])
+    password = PasswordField("password", [InputRequired()])
     loginButton = SubmitField('Login')

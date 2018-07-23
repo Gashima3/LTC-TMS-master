@@ -70,8 +70,14 @@ class Staff(Base, db.Model):
     position = Column("staffPosition", String(255), index=True)
     cv = Column("CV", DateTime, index=True)
     license= Column("License", DateTime, index=True)
-    role="staff"
 
+    if position == "director":
+        role = "director"
+    elif position == "CNO":
+        role = "CNO"
+    else:
+        role = "CNA"
+        
     # get_id override for supervisorID
     def get_id(self):
         return str(self.staffID)
@@ -86,6 +92,7 @@ class Staff(Base, db.Model):
 
     def __repr__(self):
         return "<Staff %r>" % (self.staffID)
+
 
 
 class Request(db.Model):
