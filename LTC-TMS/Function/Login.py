@@ -1,14 +1,14 @@
 #
 # Login Verification Functions
-# author: Mason Hoffman
-# created: 2/4/2018 (Go eagles!)
-# latest: 3/6/2018
+# author: Gama F. Ahimsa
+# created: 7/23/2018
+# latest:
 # purpose: hash comparison & login verification (requirement 38)
 #
 
 import bcrypt
 import database
-from Forms.models import User, Supervisor, Admin
+from Forms.models import Patient, Staff
 from flask_login import login_user
 import app
 
@@ -18,16 +18,16 @@ import app
 @database.login_manager.user_loader
 def load_user(id):
     if ('role' in app.session):
-        if (app.session['role']=="supervisor"):
-            return Supervisor.query.get(int(id))
-        if (app.session['role']=="admin"):
-            return Admin.query.get(int(id))
+        if (app.session['role']=="director"):
+            return Staff.query.get(int(id))
+        if (app.session['role']=="CNO"):
+            return Staff.query.get(int(id))
     return None
 
 # requirement 38
 # root function for login verification
-def verifyMain(email,password):
-    acc = requestHash(email)
+def verifyMain(staffID, password):
+    acc = requestHash(staffID)
     if acc:      # if the account was found in either the admin or the supervisor table
         if acc.password.encode('utf-8') == bcrypt.hashpw(password.encode('utf-8'), acc.password.encode('utf-8')):
             login_user(acc)
@@ -39,14 +39,14 @@ def verifyMain(email,password):
     return False # Something was fucked up
 
 # return password hash and salt from database. (salt is stored with the hash)
-def requestHash(submittedEmail):
+def requestHash(submittedID):
     p = None
-    p = (Supervisor.query.filter_by(email=submittedEmail).first())
+    p = (Staff.query.filter_by(staffID=submittedID).first())
     if (p):
-        app.session['role']="supervisor"
+        app.session['role'] = "director"
         return p
-    p = (Admin.query.filter_by(username=submittedEmail).first())
+    p = (Staff.query.filter_by(staffID=submittedID).first())
     if (p):
-        app.session['role']="admin"
+        app.session['role'] = "CNO"
         return p
     return None
