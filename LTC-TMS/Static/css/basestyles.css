@@ -4,6 +4,31 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
+
+input[type=text] {
+    width: 130px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+input[type=text]:focus {
+    width: 40%;
+}
+* {
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+
+
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
@@ -74,6 +99,48 @@ body {
     height: 500px;
     /* Should be removed. Only for demonstration */
 }
+
+button {
+    background-color: #d9ead3ff;
+    border: 2px solid black ;
+    color: black;
+    padding: 4px 32px;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    margin: 6px 8px;
+    cursor: pointer;
+}
+
+ button:hover{background-color:#32cd32;}
+
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    background-color(even): b;
+    }
+
+
+td, th {
+
+    border: 3px solid #000000;
+    text-align: center;
+    padding: 8px;
+}
+
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+.fixed {
+  position: fixed;
+  bottom: 1000;
+  right: 0px;
+  width: 200px;
+  background-color: white;
+}
+
 
 
 </style>

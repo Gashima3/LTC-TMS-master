@@ -1,0 +1,26 @@
+{% extends 'loginbase.html' %}
+{% block content %}
+
+<div class="content">
+	<div style="width:460px;height:400px;padding:20px;background-color:#6aa84fff;position:absolute;top:50%;right:50%;margin-right:-250px;margin-top:-90px;">
+    <form action="/action_page.php">
+
+
+
+  <div style="positon:absolute;padding:60px;" class="container">
+    <label for="uname"><b>Username</b></label>
+    <input type="text" placeholder="Enter Username" name="uname" required>
+
+    <label for="psw"><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" name="psw" required>
+
+    <button style="margin-left:100px;"  type="submit">Login</button>
+
+      </div>
+
+  <div class="container" >
+    <button  style="margin-left:310px;"  type="button" class="cancelbtn">Cancel</button>
+      </div>
+    </form>
+    <h1 style="position:absolute;top:0px;left:180px;">Sign In</h1>
+    </div>
