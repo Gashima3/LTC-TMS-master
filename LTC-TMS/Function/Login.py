@@ -8,7 +8,7 @@
 
 import bcrypt
 import database
-from Forms.models import Patient, Staff
+from DBsetting.LTC-TMSforms import Patient, Staff
 from flask_login import login_user
 import app
 
