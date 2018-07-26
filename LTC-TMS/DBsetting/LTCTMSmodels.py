@@ -35,7 +35,7 @@ class Base(UserMixin, object):
         pass
 
 # User account class. Child of Base
-class Patients(Base, db.Model):
+class Patient(Base, db.Model):
     """User that is a child of base"""
     __tablename__ = "patients"
     roomno = Column("roomNo.", String(255), index=True)
