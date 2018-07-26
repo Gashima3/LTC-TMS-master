@@ -12,24 +12,11 @@ from wtforms import StringField, PasswordField, DateField, SubmitField, \
     TextAreaField, HiddenField
 from wtforms.validators import InputRequired, EqualTo, Email, DataRequired
 
-
 # Login form
 class LoginForm(FlaskForm):
     staffID = StringField('staffID', [InputRequired()])
-    password = PasswordField( staffID+nationalID, [InputRequired()])
+    password = PasswordField('password', [InputRequired()])
     loginButton = SubmitField('Login')
-<<<<<<< HEAD
-=======
-
-
-# need to get rid of this class. needed it for dashboard ->
-# sorry Nate
-class CreateAccount(FlaskForm):
-    staffID = StringField('staffID', [Email(), InputRequired()])
-    password = PasswordField('Password', [InputRequired(), EqualTo('confirm', message='Passwords must match')])
-    confirm = PasswordField('Repeat Password')
-    submit = SubmitField('Create New Account')
-
 
 
 # Requirement 29, 30
@@ -41,7 +28,7 @@ class EditSuper(FlaskForm):
     fname = StringField("*First Name", [InputRequired()])
     mname = StringField("Middle Name")
     lname = StringField("*Last Name", [InputRequired()])
-    gender = RadioField ("*Gender", choices = [("male","Male"),("female","Female"),("other","Other")])
+    gender = RadioField("*Gender", choices = [("male","Male"),("female","Female"),("other","Other")])
     birthday = DateField("*Birthday", format="%Y-%m-%d")
     affiliation = StringField("*Affiliation", [InputRequired()])
     ethnicity = StringField("*Ethnicity", [InputRequired()])
@@ -162,44 +149,3 @@ class TaskAssignmentForm(FlaskForm):
     @staticmethod
     def process_data(data):
         return data
-
-# Yocums create survey form 3/6/18 4:53pm
-
-class SurveyResponses(FlaskForm):
-    response = StringField('Response:', [InputRequired()])
-    delete_response = SubmitField("Delete")
-    @staticmethod
-    def process_data(data):
-        return data
-
-class SurveyQuestion(FlaskForm):
-    #radio = RadioField ("test", choices = [("1","1"),("2","2"),("3","3"),("4","4"),("5","5")])
-    stock_question = StringField('Question:', [InputRequired()])
-    delete_a_question = SubmitField("Delete Question")
-    add_response = SubmitField("Add Response")
-    isActive = BooleanField("Active", default=1)
-    responses = FieldList(FormField(SurveyResponses), min_entries=0)
-    questID = HiddenField("")
-    questType = HiddenField("")
-    #question_up = SubmitField('Move Question â†‘')
-    #question_down = SubmitField('Move Question â†“')
-    @staticmethod
-    def process_data(data):
-        return data
-
-class CreateASurvey(FlaskForm):
-    save = SubmitField("Save")
-    delete = SubmitField("Delete")
-    #taskButton = ButtonField("Tasks")
-    activate_a_survey = BooleanField("Active", default=1)
-    #assign_a_survey = BooleanField("Assign")
-    questions = FieldList(FormField(SurveyQuestion), min_entries=0)
-    add_question = SubmitField("Add Question")
-    title = StringField('Survey Name:', [InputRequired()])
-    description = StringField('Description:', [InputRequired()])
-    userID = HiddenField("")
-    taskID = HiddenField("")
-    @staticmethod
-    def process_data(data):
-        return data
->>>>>>> d53af33d0db0fa8fa9e25577d59141e8c0a32c5d

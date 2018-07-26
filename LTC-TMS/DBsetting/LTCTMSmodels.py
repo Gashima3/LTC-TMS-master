@@ -100,8 +100,8 @@ class Staff(Base, db.Model):
 class Request(db.Model):
     __tablename__="request"
     requestID=Column('requestID', Integer, primary_key=True)
-    userID=Column('userID', Integer, index=True)
-    supervisorID=Column('supervisorID', Integer, index=True)
+    patientID=Column('patientID', Integer, index=True)
+    staffID=Column('staffID', Integer, index=True)
     taskID=Column('taskID', Integer, index=True)
     requestDescription=Column('requestDescription', String(255), index=True)
     isApproved=Column('isApproved', Boolean, index=True)
