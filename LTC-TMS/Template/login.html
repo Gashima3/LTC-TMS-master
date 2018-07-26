@@ -3,24 +3,29 @@
 
 <div class="content">
 	<div style="width:460px;height:400px;padding:20px;background-color:#6aa84fff;position:absolute;top:50%;right:50%;margin-right:-250px;margin-top:-90px;">
-    <form action="/action_page.php">
+    <form class="signin-form" action="{{url_for('Login')}}" method="POST">
+			{{ form.csrf_token }}
+			{% if form.csrf_token.errors %}
+					<h1><strong> Invalid CSRF token! <strong></h1>
+			{% endif %}
 
+  		<div style="positon:absolute;padding:60px;" class="container">
+				<div style="display: inline-block; mid-width: 13em" >
+				{{ form.staffID.label (style="font-size: 1.5em") }}
+				{{ form.staffID(class="form-control") }}
+				</div>
+				<br>
+				<div style="display: inline-block; mid-width: 13em" >
+    		{{ form.password.label (style="font-size: 1.5em") }}
+				{{ form.password(class="form-control") }}
+				</div>
+				<br>
+				{{ form.loginButton (class='btn btn-secondary btn-lg') }}
 
-
-  <div style="positon:absolute;padding:60px;" class="container">
-    <label for="uname"><b>Username</b></label>
-    <input type="text" placeholder="Enter Username" name="uname" required>
-
-    <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="psw" required>
-
-    <button style="margin-left:100px;"  type="submit">Login</button>
-
-      </div>
-
-  <div class="container" >
-    <button  style="margin-left:310px;"  type="button" class="cancelbtn">Cancel</button>
       </div>
     </form>
+
+
     <h1 style="position:absolute;top:0px;left:180px;">Sign In</h1>
     </div>
+{% endblock content %}
