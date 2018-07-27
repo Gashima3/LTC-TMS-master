@@ -25,7 +25,7 @@ def api_login():
     else:
         return jsonify({'d': 'sign in success'})
 
-@app.route('/api/user/GetByUser/<uname>', method=['GET'])
+@app.route('/api/user/GetByUser/<uname>', methods=['GET'])
 def api_getbyuser(uname):
     r = Api.getByUser(uname)
     return jsonify([r])
