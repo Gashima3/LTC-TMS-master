@@ -14,7 +14,7 @@ from flask_mail import Message
 
 @app.route('/', methods = ['GET'])
 def index():
-    return redirect("login", cide=302)
+    return redirect("login", code=302)
 
 @app.route('/api/user/login', methods=['POST'])
 def api_login():
