@@ -1,7 +1,7 @@
 from flask import render_template, request, jsonify, redirect,url_for, flash, session, json
 
 from app import app
-from DBsetting.LTCTMSforms import CreateAccount,CreateSupervisor, EditSenior, EditSuper, AddUser, AssignUser, \
+from DBsetting.LTCTMSforms import DetailedStep, MainStep, EditSenior, EditSuper, AddUser, AssignUser, \
     CreateTaskForm, LoginForm, TaskAssignmentForm
 from Function import UserMgmt,  TaskHelper, Update, Login, Library, TaskAssignmentHelper, Api, Reports
 from database import *
