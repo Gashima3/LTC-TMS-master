@@ -99,8 +99,6 @@ class MainStep(FlaskForm):
 
     add_detailed_step = SubmitField('+ Detailed Step')
     main_step_removal = SubmitField('- Main Step')
-    # main_step_up = SubmitField('Move Main Step ↑')
-    # main_step_down = SubmitField('Move Main Step ↓')
 
     @staticmethod
     def process_data(data):
