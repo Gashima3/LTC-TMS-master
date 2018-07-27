@@ -75,8 +75,6 @@ class DetailedStep(FlaskForm):
     voice_button_stepText = SubmitField('SPEECH')
     image = FileField('Upload Image for Detailed Step:')
     detailed_step_removal = SubmitField('- Detailed Step')
-    # detailed_step_up = SubmitField('↑')
-    # detailed_step_down = SubmitField('↓')
 
     @staticmethod
     def process_data(data):
@@ -101,8 +99,6 @@ class MainStep(FlaskForm):
 
     add_detailed_step = SubmitField('+ Detailed Step')
     main_step_removal = SubmitField('- Main Step')
-    # main_step_up = SubmitField('Move Main Step ↑')
-    # main_step_down = SubmitField('Move Main Step ↓')
 
     @staticmethod
     def process_data(data):
