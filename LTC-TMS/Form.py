@@ -6,7 +6,7 @@ from wtforms.validator import InputRequired, EqualTo, Email, DataRequired
 
 
 # Login form
- class LoginForm(FlaskForm):
+class LoginForm(FlaskForm):
      email = StringField('Email', [InputRequired()])
      password = PasswordField('Password', [InputRequired()])
      loginButton = SubmitField('Login')
@@ -16,4 +16,3 @@ class Patient(FlaskForm):
     lname=StringField("Last Name", [InputRequired()])
     gender=RadioField("Gender", choices = [("male","Male"),("female","Female")])
     birthday=DateField("Birthday", format="%Y-%m-%d")
-    
