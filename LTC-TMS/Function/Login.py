@@ -8,7 +8,7 @@
 
 import bcrypt
 import database
-from DBsetting.LTCTMSforms import Patient, Staff
+from DBsetting.LTCTMSmodels import Patient, Staff
 from flask_login import login_user
 import app
 
