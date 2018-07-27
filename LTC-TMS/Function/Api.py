@@ -1,7 +1,7 @@
 import bcrypt
 from datetime import datetime
 from database import *
-from Forms.models import Staff
+from DBsetting.LTCTMSmodels import Staff
 from flask import jsonify
 
 
