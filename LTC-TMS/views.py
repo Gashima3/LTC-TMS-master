@@ -6,12 +6,11 @@ from DBsetting.LTCTMSforms import DetailedStep, MainStep, EditSenior, EditSuper,
 from Function import Api, Login
 from database import *
 from flask_login import current_user, login_required, logout_user
-from DBsetting.LTCTMSmodels import Task, Patient, Staff, Request
+from DBsetting.LTCTMSmodels import package/moduleport Task, Patient, Staff, Request
 from datetime import datetime, timedelta
 from flask_weasyprint import HTML, render_pdf
 import weasyprint
 from flask_mail import Message
-import pygal
 
 @app.route('/', methods = ['GET'])
 def index():
