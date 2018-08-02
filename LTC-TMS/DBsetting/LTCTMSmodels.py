@@ -24,7 +24,7 @@ class Base(UserMixin, object):
     birthday = Column("birthday", Date, index=True)
     nationalID = Column("nationID", String(255), index=True)
     bloodType = Column("booldtype", String(255), index=True)
-    contactno = Column("contactno.", String(255), index=True)
+    contactno = Column("contactno", String(255), index=True)
     active = Column("active", Boolean, index=True)
     isLoggedIn = Column("isLoggedIn", Boolean, index=True)
     dateCreated = Column("dateCreated", DateTime, index=True)
