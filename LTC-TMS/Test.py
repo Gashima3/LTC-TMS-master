@@ -6,7 +6,7 @@ app.config['MYSQL_HOST'] = 'localhost'
 app.config['MySQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = 'icac104104'
 app.config['MYSQL_DB'] = 'test1'
-#app.config['MYSQL_CURSORCLASS'] = 'DictCrusor'
+app.config['MYSQL_CURSORCLASS'] = 'DictCrusor'
 
 mysql = MySQL(app)
 
