@@ -29,7 +29,7 @@ class Base(UserMixin, object):
     isLoggedIn = Column("isLoggedIn", Boolean, index=True)
     dateCreated = Column("dateCreated", DateTime, index=True)
     picture = Column("picture", DateTime, index=True)
-    #password = nationalID
+    password = Column("password", String(255), index=True)
 
     def __init__(self):
         pass
