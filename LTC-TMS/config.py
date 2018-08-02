@@ -1,4 +1,4 @@
-
+SECRET_KEY = 'wefb292h3d9be#@@YEBBCE2NION32UDFEBUE2U202hfeu2onwdsjdf
 
 MYSQL_HOST = 'localhost'
 MYSQL_USER = 'root'
