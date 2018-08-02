@@ -23,7 +23,7 @@ class Base(UserMixin, object):
     gender = Column("gender", String(255), index=True)
     birthday = Column("birthday", Date, index=True)
     nationalID = Column("nationID", String(255), index=True)
-    bloodType = Column("booldtype", String(255), index=True)
+    bloodType = Column("bloodtype", String(255), index=True)
     contactno = Column("contactno", String(255), index=True)
     active = Column("active", Boolean, index=True)
     isLoggedIn = Column("isLoggedIn", Boolean, index=True)
