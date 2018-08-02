@@ -14,7 +14,7 @@ from flask_mail import Message
 
 @app.route('/', methods = ['GET'])
 def index():
-    return redirect(url_for("login", code=302))
+    return redirect("login", code=302)
 
 @app.route('/api/user/login', methods=['POST'])
 def api_login():
@@ -29,3 +29,18 @@ def api_login():
 def api_getbyuser(uname):
     r = Api.getByUser(uname)
     return jsonify([r])
+
+@app.route('/login', methods=['POST','GET'])
+def login():
+    lForm = LoginForm()
+    if lForm.validate_on_submit():
+        if Login.verifyMain(lForm.staffID.data, lForm.password.data):
+            print("login sucessful")
+            return redirect("dashboard", code=302)
+        else:
+            print("login failed, try again")
+    # form submission was invalid
+    if lForm.errors:
+        for error_field, error_message in lForm.errors.items():
+            print("Field : {field}; error : {error}".format(field=error_field, error=error_message))
+    return render_template('login.html', form=lForm)
