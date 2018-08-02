@@ -24,7 +24,7 @@ def load_user(id):
             return Staff.query.get(int(id))
     return None
 
-# requirement 38
+
 # root function for login verification
 def verifyMain(staffID, password):
     acc = requestHash(staffID)
