@@ -9,27 +9,26 @@
 from database import db
 from datetime import datetime
 from flask_login import UserMixin
-from sqlalchemy import Boolean, DateTime, Column, Integer, \
+from sqlalchemy import Boolean, DateTime, db.Column, Integer, \
                        String, ForeignKey, Date
 from sqlalchemy.orm import relationship
 
 # Base class inherited by Supervisor and User class
 class Base(UserMixin, object):
     """Class that represents a basic person"""
-    email = db.Column( db.String(255), unique=True, index=True)
-    phone = db.Column(db.Integer, index=True)
-    fname = db.Column( db.String(255), index=True)
-    lname = db.Column( db.String(255), index=True)
-    gender = db.Column( db.String(255), index=True)
-    birthday = db.Column( db.Date, index=True)
-    nationalID = db.Column( db.String(255), index=True)
-    bloodType = db.Column( db.String(255), index=True)
-    contactno = db.Column( db.String(255), index=True)
-    active = db.Column( db.Boolean, index=True)
-    isLoggedIn = db.Column( db.Boolean, index=True)
-    dateCreated = db.Column( db.DateTime, index=True)
-    picture = db.Column( db.DateTime, index=True)
-    password = db.Column(db.String(255), index=True)
+    email = db.Column("email", db.String(255), unique=True, index=True)
+    fname = db.Column("fname", db.String(255), index=True)
+    lname = db.Column("lname", db.String(255), index=True)
+    gender = db.Column("gender", db.String(255), index=True)
+    birthday = db.Column("birthday", db.Date, index=True)
+    nationalID = db.Column("nationalID", db.String(255), index=True)
+    bloodType = db.Column("bloodType", db.String(255), index=True)
+    contactno = db.Column("contactno", db.String(255), index=True)
+    active = db.Column("active", db.Boolean, index=True)
+    isLoggedIn = db.Column("isLoggedIn", db.Boolean, index=True)
+    dateCreated = db.Column("dateCreated", db.DateTime, index=True)
+    picture = db.Column("picture", db.DateTime, index=True)
+    password = db.Column("password", db.String(255), index=True)
 
     def __init__(self):
         pass
@@ -38,13 +37,13 @@ class Base(UserMixin, object):
 class Patient(Base, db.Model):
     """User that is a child of base"""
     __tablename__ = "patients"
-    roomno = db.Column( db.String(255), index=True)
-    cnaID = db.Column(db.Integer, index=True)
-    appointmentRecord = db.Column( db.String(255), index=True)
-    medicalRecord = db.Column(db.DateTime, index=True)
-    description = db.Column(db.String(255), index=True)
-    lastActive = db.Column(db.DateTime, index=True)
-    patientID = db.Column(db.Integer, primary_key=True)
+    roomno = db.Column("roomno", db.String(255), index=True)
+    cnaID = db.Column("cnaID", db.Integer, index=True)
+    appointmentRecord = db.Column("appointmentRecord", db.String(255), index=True)
+    medicalRecord = db.Column("medicalRecord",db.DateTime, index=True)
+    description = db.Column("description",db.String(255), index=True)
+    lastActive = db.Column("lastActive",db.DateTime, index=True)
+    patientID = db.Column("patientID",db.Integer, primary_key=True)
     role = "patient"
 
     # patients constructor
@@ -68,10 +67,10 @@ class Patient(Base, db.Model):
 class Staff(Base, db.Model):
     """Staff that is a child of base"""
     __tablename__ = "staff"
-    staffID = db.Column(db.Integer, primary_key=True)
-    position = db.Column(db.String(255), index=True)
-    cv = db.Column(db.DateTime, index=True)
-    license= db.Column(db.DateTime, index=True)
+    staffID = db.Column("staffID",db.Integer, primary_key=True)
+    position = db.Column("position",db.String(255), index=True)
+    cv = db.Column("cv",db.DateTime, index=True)
+    license= db.Column("license",db.DateTime, index=True)
 
     if position == "director":
         role = "director"
@@ -96,16 +95,15 @@ class Staff(Base, db.Model):
         return "<Staff %r>" % (self.staffID)
 
 
-
 class Request(db.Model):
     __tablename__="request"
-    requestID=db.Column(db.Integer, primary_key=True)
-    patientID=db.Column(db.Integer, index=True)
-    staffID=db.Column(db.Integer, index=True)
-    taskID=db.Column(db.Integer, index=True)
-    requestDescription=db.Column(db.String(255), index=True)
-    isApproved=Column(db.Boolean, index=True)
-    dateRequested=Column(db.Date, index=True)
+    requestID=db.Column('requestID', Integer, primary_key=True)
+    userID=db.Column('userID', Integer, index=True)
+    supervisorID=db.Column('supervisorID', Integer, index=True)
+    taskID=db.Column('taskID', Integer, index=True)
+    requestDescription=db.Column('requestDescription', String(255), index=True)
+    isApproved=db.Column('isApproved', Boolean, index=True)
+    dateRequested=db.Column('dateRequested', Date, index=True)
 
     def __init__(self):
         pass
@@ -120,16 +118,20 @@ class Task(db.Model):
     Basic task fields that are used for the Task, Main Steps, and Detailed
     Steps"""
     __tablename__ = 'task'
-    taskID = db.Column(db.Integer, primary_key=True)
-    staffID = db.Column(db.Integer)
-    title = db.Column(db.String(255))
-    description = db.Column(db.String(255))
-    activated = db.Column(db.String(255))
-    dateCreated = db.Column(db.Date)
-    dateModified = db.Column(db.Date)
-    lastUsed = db.Column(db.DateTime)
-    published = db.Column(db.Boolean)
-    image = db.Column(db.String(255))
+    taskID = db.Column('taskID', Integer, primary_key=True)
+    supervisorID =db.Column('supervisorID', Integer)
+    title = db.Column('title', String(255))
+    description = db.Column('description', String(255))
+    activated = db.Column('activated', String(255))
+    dateCreated =db.Column('dateCreated', Date)
+    dateModified = db.Column('dateModified', Date)
+    dateModified = db.Column('dateModified', Date)
+    lastUsed = db.Column('lastUsed', DateTime)
+    lastUsed = db.Column('lastUsed', DateTime)
+    published = db.Column('published', Boolean)
+    published = db.Column('published', Boolean)
+    image = db.Column('image', String(255))
+    image = db.Column('image', String(255))
 
     def __init__(self, title=None):
         super(Task, self).__init__()
@@ -144,16 +146,16 @@ class MainStep(db.Model):
     Author: David Schaeffer, March 2018 <dscha959@live.kutztown.edu>
     """
     __tablename__ = 'mainSteps'
-    mainStepID = db.db.Column(db.Integer, primary_key=True)
-    taskID = db.Column(db.Integer)
-    title = db.Column(db.String(255))
-    requiredInfo = db.db.Column(db.String(255))
-    listOrder = db.db.Column(db.Integer)
-    requiredItem = db.db.Column(db.String(255))
-    stepText = db.db.Column(db.String(255))
-    audio = db.db.Column(db.String(255))
-    image = db.db.Column(db.String(255))
-    video = db.db.Column(db.String(255))
+    mainStepID = db.Column('mainStepID', Integer, primary_key=True)
+    taskID = db.Column('taskID', Integer)
+    title = db.Column('title', String(255))
+    requiredInfo = db.Column('requiredInfo', String(255))
+    listOrder = db.Column('listOrder', Integer)
+    requiredItem = db.Column('requiredItem', String(255))
+    stepText = db.Column('stepText', String(255))
+    audio = db.Column('audio', String(255))
+    image = db.Column('image', String(255))
+    video = db.Column('video', String(255))
 
     def __init__(self, title=None):
         super(MainStep, self).__init__()
@@ -165,12 +167,12 @@ class DetailedStep(db.Model):
     Author: David Schaeffer, March 2018 <dscha959@live.kutztown.edu>
     """
     __tablename__ = 'detailedSteps'
-    detailedStepID = db.Column(db.Integer, primary_key=True)
-    mainStepID = db.Column(db.Integer)
-    title = db.Column(db.String(255))
-    stepText = db.Column(db.String(255))
-    listOrder = db.Column(db.Integer)
-    image =db.Column(db.String(255))
+    detailedStepID = db.Column('detailedStepID', Integer, primary_key=True)
+    mainStepID = db.Column('mainStepID', Integer)
+    title = db.Column('title', String(255))
+    stepText = db.Column('stepText', String(255))
+    listOrder = db.Column('listOrder', Integer)
+    image = db.Column('image', String(255))
 
     def __init__(self, title=None):
         super(DetailedStep, self).__init__()
@@ -182,15 +184,10 @@ class Keyword(db.Model):
     Author: David Schaeffer, March 2018 <dscha959@live.kutztown.edu>
     """
     __tablename__ = 'keywords'
-    keywordID = db.Column(db.Integer, primary_key=True)
-    taskID = db.Column(db.Integer)
-    word =db.Column(db.String(255))
+    keywordID = db.Column('keywordID', Integer, primary_key=True)
+    taskID = db.Column('taskID', Integer)
+    word = db.Column(String(255))
 
     def __init__(self, task_id, word):
         self.taskID = task_id
         self.word = word
-
-    def __init__(self, formTitle=None, surv_quest=None):
-        super(SurveyQuest, self).__init__()
-        self.formTitle = formTitle
-        survey_quest = surv_quest
