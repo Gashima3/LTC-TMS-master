@@ -16,20 +16,20 @@ from sqlalchemy.orm import relationship
 # Base class inherited by Supervisor and User class
 class Base(UserMixin, object):
     """Class that represents a basic person"""
-    email = Column("email", String(255), unique=True, index=True)
-    phone = Column("phone", Integer, index=True)
-    fname = Column("fname", String(255), index=True)
-    lname = Column("lname", String(255), index=True)
-    gender = Column("gender", String(255), index=True)
-    birthday = Column("birthday", Date, index=True)
-    nationalID = Column("nationalID", String(255), index=True)
-    bloodType = Column("bloodtype", String(255), index=True)
-    contactno = Column("contactno", String(255), index=True)
-    active = Column("active", Boolean, index=True)
-    isLoggedIn = Column("isLoggedIn", Boolean, index=True)
-    dateCreated = Column("dateCreated", DateTime, index=True)
-    picture = Column("picture", DateTime, index=True)
-    password = Column("password", String(255), index=True)
+    email = db.Column( db.String(255), unique=True, index=True)
+    phone = db.Column(db.Integer, index=True)
+    fname = db.Column( db.String(255), index=True)
+    lname = db.Column( db.String(255), index=True)
+    gender = db.Column( db.String(255), index=True)
+    birthday = db.Column( db.Date, index=True)
+    nationalID = db.Column( db.String(255), index=True)
+    bloodType = db.Column( db.String(255), index=True)
+    contactno = db.Column( db.String(255), index=True)
+    active = db.Column( db.Boolean, index=True)
+    isLoggedIn = db.Column( db.Boolean, index=True)
+    dateCreated = db.Column( db.DateTime, index=True)
+    picture = db.Column( db.DateTime, index=True)
+    password = db.Column(db.String(255), index=True)
 
     def __init__(self):
         pass
@@ -38,13 +38,13 @@ class Base(UserMixin, object):
 class Patient(Base, db.Model):
     """User that is a child of base"""
     __tablename__ = "patients"
-    roomno = Column("roomNo.", String(255), index=True)
-    cnaID = Column("cnaID", Integer, index=True)
-    appointmentRecord = Column("appointmentRecord", String(255), index=True)
-    medicalRecord = Column("medicalRecord", DateTime, index=True)
-    description = Column("description", String(255), index=True)
-    lastActive = Column("lastActive", DateTime, index=True)
-    patientID = Column("patientID", Integer, primary_key=True)
+    roomno = db.Column( db.String(255), index=True)
+    cnaID = db.Column(db.Integer, index=True)
+    appointmentRecord = db.Column( db.String(255), index=True)
+    medicalRecord = db.Column(db.DateTime, index=True)
+    description = db.Column(db.String(255), index=True)
+    lastActive = db.Column(db.DateTime, index=True)
+    patientID = db.Column(db.Integer, primary_key=True)
     role = "patient"
 
     # patients constructor
@@ -68,10 +68,10 @@ class Patient(Base, db.Model):
 class Staff(Base, db.Model):
     """Staff that is a child of base"""
     __tablename__ = "staff"
-    staffID = Column("staffID", Integer, primary_key=True)
-    position = Column("position", String(255), index=True)
-    cv = Column("CV", DateTime, index=True)
-    license= Column("License", DateTime, index=True)
+    staffID = db.Column(db.Integer, primary_key=True)
+    position = db.Column(db.String(255), index=True)
+    cv = db.Column(db.DateTime, index=True)
+    license= db.Column(db.DateTime, index=True)
 
     if position == "director":
         role = "director"
@@ -99,13 +99,13 @@ class Staff(Base, db.Model):
 
 class Request(db.Model):
     __tablename__="request"
-    requestID=Column('requestID', Integer, primary_key=True)
-    patientID=Column('patientID', Integer, index=True)
-    staffID=Column('staffID', Integer, index=True)
-    taskID=Column('taskID', Integer, index=True)
-    requestDescription=Column('requestDescription', String(255), index=True)
-    isApproved=Column('isApproved', Boolean, index=True)
-    dateRequested=Column('dateRequested', Date, index=True)
+    requestID=db.Column(db.Integer, primary_key=True)
+    patientID=db.Column(db.Integer, index=True)
+    staffID=db.Column(db.Integer, index=True)
+    taskID=db.Column(db.Integer, index=True)
+    requestDescription=db.Column(db.String(255), index=True)
+    isApproved=Column(db.Boolean, index=True)
+    dateRequested=Column(db.Date, index=True)
 
     def __init__(self):
         pass
@@ -120,16 +120,16 @@ class Task(db.Model):
     Basic task fields that are used for the Task, Main Steps, and Detailed
     Steps"""
     __tablename__ = 'task'
-    taskID = Column('taskID', Integer, primary_key=True)
-    staffID = Column('supervisorID', Integer)
-    title = Column('title', String(255))
-    description = Column('description', String(255))
-    activated = Column('activated', String(255))
-    dateCreated = Column('dateCreated', Date)
-    dateModified = Column('dateModified', Date)
-    lastUsed = Column('lastUsed', DateTime)
-    published = Column('published', Boolean)
-    image = Column('image', String(255))
+    taskID = db.Column(db.Integer, primary_key=True)
+    staffID = db.Column(db.Integer)
+    title = db.Column(db.String(255))
+    description = db.Column(db.String(255))
+    activated = db.Column(db.String(255))
+    dateCreated = db.Column(db.Date)
+    dateModified = db.Column(db.Date)
+    lastUsed = db.Column(db.DateTime)
+    published = db.Column(db.Boolean)
+    image = db.Column(db.String(255))
 
     def __init__(self, title=None):
         super(Task, self).__init__()
@@ -144,16 +144,16 @@ class MainStep(db.Model):
     Author: David Schaeffer, March 2018 <dscha959@live.kutztown.edu>
     """
     __tablename__ = 'mainSteps'
-    mainStepID = Column('mainStepID', Integer, primary_key=True)
-    taskID = Column('taskID', Integer)
-    title = Column('title', String(255))
-    requiredInfo = Column('requiredInfo', String(255))
-    listOrder = Column('listOrder', Integer)
-    requiredItem = Column('requiredItem', String(255))
-    stepText = Column('stepText', String(255))
-    audio = Column('audio', String(255))
-    image = Column('image', String(255))
-    video = Column('video', String(255))
+    mainStepID = db.db.Column(db.Integer, primary_key=True)
+    taskID = db.Column(db.Integer)
+    title = db.Column(db.String(255))
+    requiredInfo = db.db.Column(db.String(255))
+    listOrder = db.db.Column(db.Integer)
+    requiredItem = db.db.Column(db.String(255))
+    stepText = db.db.Column(db.String(255))
+    audio = db.db.Column(db.String(255))
+    image = db.db.Column(db.String(255))
+    video = db.db.Column(db.String(255))
 
     def __init__(self, title=None):
         super(MainStep, self).__init__()
@@ -165,12 +165,12 @@ class DetailedStep(db.Model):
     Author: David Schaeffer, March 2018 <dscha959@live.kutztown.edu>
     """
     __tablename__ = 'detailedSteps'
-    detailedStepID = Column('detailedStepID', Integer, primary_key=True)
-    mainStepID = Column('mainStepID', Integer)
-    title = Column('title', String(255))
-    stepText = Column('stepText', String(255))
-    listOrder = Column('listOrder', Integer)
-    image = Column('image', String(255))
+    detailedStepID = db.Column(db.Integer, primary_key=True)
+    mainStepID = db.Column(db.Integer)
+    title = db.Column(db.String(255))
+    stepText = db.Column(db.String(255))
+    listOrder = db.Column(db.Integer)
+    image =db.Column(db.String(255))
 
     def __init__(self, title=None):
         super(DetailedStep, self).__init__()
@@ -182,9 +182,9 @@ class Keyword(db.Model):
     Author: David Schaeffer, March 2018 <dscha959@live.kutztown.edu>
     """
     __tablename__ = 'keywords'
-    keywordID = Column('keywordID', Integer, primary_key=True)
-    taskID = Column('taskID', Integer)
-    word = Column(String(255))
+    keywordID = db.Column(db.Integer, primary_key=True)
+    taskID = db.Column(db.Integer)
+    word =db.Column(db.String(255))
 
     def __init__(self, task_id, word):
         self.taskID = task_id
