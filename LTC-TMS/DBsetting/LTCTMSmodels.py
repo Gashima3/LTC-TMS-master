@@ -9,7 +9,7 @@
 from database import db
 from datetime import datetime
 from flask_login import UserMixin
-from sqlalchemy import Boolean, DateTime, db.Column, Integer, \
+from sqlalchemy import Boolean, DateTime, Column, Integer, \
                        String, ForeignKey, Date
 from sqlalchemy.orm import relationship
 
