@@ -69,7 +69,7 @@ class Staff(Base, db.Model):
     """Staff that is a child of base"""
     __tablename__ = "staff"
     staffID = Column("staffID", Integer, primary_key=True)
-    position = Column("staffPosition", String(255), index=True)
+    position = Column("position", String(255), index=True)
     cv = Column("CV", DateTime, index=True)
     license= Column("License", DateTime, index=True)
 
