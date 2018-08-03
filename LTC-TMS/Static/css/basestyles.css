@@ -23,10 +23,12 @@ input[type=text], input[type=password] {
 }
 
 /* Style the top navigation bar */
+
 .topnav {
     overflow: hidden;
     background-color: #6aa84fff;
     padding:10px;
+	height:60px;
 }
 
 .dropbtn {
