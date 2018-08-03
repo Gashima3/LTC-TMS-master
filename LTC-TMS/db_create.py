@@ -1,4 +1,7 @@
-import config
-from database import db
+from sqlalchemy import create_engine
+engine = create_engine ('mysql://root:icac104104@localhost/test1')
+connection = engine.connect()
 
-db.create_all()
+from mysql import MetaData, Table
+metadata = MetaData()
+census = Table ('census', metadata, autoload=True, autoload_with=engine)
