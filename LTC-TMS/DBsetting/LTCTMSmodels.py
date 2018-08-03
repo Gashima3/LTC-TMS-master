@@ -23,7 +23,7 @@ class Base(UserMixin, object):
     birthday = db.Column("birthday", db.Date, index=True)
     nationalID = db.Column("nationalID", db.String(255), index=True)
     bloodType = db.Column("bloodType", db.String(255), index=True)
-    contactno = db.Column("contactno", db.String(255), index=True)
+    contactno = db.Column("contactno", db.Integer, index=True)
     active = db.Column("active", db.Boolean, index=True)
     isLoggedIn = db.Column("isLoggedIn", db.Boolean, index=True)
     dateCreated = db.Column("dateCreated", db.DateTime, index=True)
