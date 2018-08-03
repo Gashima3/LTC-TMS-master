@@ -3,7 +3,7 @@ from sqlalchemy.ext.declarative import declarative_base
 
 Base = declarative_base()
 
-class Only(UserMixin, object):
+class Only(Base):
     """Class that represents a basic person"""
     email = db.Column("email", db.String(255), unique=True, index=True)
     fname = db.Column("fname", db.String(255), index=True)
