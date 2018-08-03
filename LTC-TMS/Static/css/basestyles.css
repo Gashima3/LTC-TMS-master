@@ -27,6 +27,8 @@ input[type=text], input[type=password] {
     overflow: hidden;
     background-color: #6aa84fff;
     padding:10px;
+    position:relative;
+    height:80px;
 }
 
 .dropbtn {
