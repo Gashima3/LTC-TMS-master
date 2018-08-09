@@ -5,7 +5,6 @@ from DBsetting.LTCTMSforms import DetailedStep, MainStep, EditSenior, EditSuper,
     CreateTaskForm, LoginForm, TaskAssignmentForm
 from Function import Api, Login
 from database import *
-from firebase import *
 from flask_login import current_user, login_required, logout_user
 from DBsetting.LTCTMSmodels import Task, Patient, Staff, Request
 from datetime import datetime, timedelta
