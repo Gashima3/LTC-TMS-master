@@ -119,7 +119,7 @@ class Task(db.Model):
     Steps"""
     __tablename__ = 'task'
     taskID = db.Column('taskID', Integer, primary_key=True)
-    supervisorID =db.Column('supervisorID', Integer)
+    staffID =db.Column('staffID', Integer)
     title = db.Column('title', String(255))
     description = db.Column('description', String(255))
     activated = db.Column('activated', String(255))
