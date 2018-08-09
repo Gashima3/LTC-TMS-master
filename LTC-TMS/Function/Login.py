@@ -29,7 +29,7 @@ def load_user(id):
 def verifyMain(staffID, password):
     acc = requestHash(staffID)
     if acc:
-        if acc.password.encode('utf-8') == bcrypt.hashpw(password.encode('utf-8'), acc.password.encode('utf-8')):
+        if acc.password == password:
             login_user(acc)
             return True  # Lets gooooo!
         else:    # the password hash did not match

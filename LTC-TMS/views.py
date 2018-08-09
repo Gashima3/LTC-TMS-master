@@ -37,7 +37,7 @@ def login():
     if lForm.validate_on_submit():
         if Login.verifyMain(lForm.staffID.data, lForm.password.data):
             print("login sucessful")
-            return redirect("test.html", code=302)
+            return redirect("Hello.html", code=302)
         else:
             print("login failed, try again")
     # form submission was invalid
