@@ -6,7 +6,7 @@
 # purpose: hash comparison & login verification (requirement 38)
 #
 
-import bcrypt
+from bcrypt import hashpw
 import database
 from DBsetting.LTCTMSmodels import Patient, Staff
 from flask_login import login_user
@@ -28,8 +28,8 @@ def load_user(id):
 # root function for login verification
 def verifyMain(staffID, password):
     acc = requestHash(staffID)
-    if acc:      # if the account was found in either the admin or the supervisor table
-        if acc.password.encode('utf-8') == bcrypt.hashpw(password.encode('utf-8'), acc.password.encode('utf-8')):
+    if acc:
+        if acc.password.encode('utf-8') == hashpw(password.encode('utf-8'), acc.password.encode('utf-8')):
             login_user(acc)
             return True  # Lets gooooo!
         else:    # the password hash did not match

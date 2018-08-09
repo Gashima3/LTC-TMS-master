@@ -25,12 +25,7 @@ def userLogin(staffID, password):
 
 
 def getHash(staffID):
-    """
-    Description: Returns email associated by account in the database
-    Parameters: email - (string) email associated with the account
-    Return Value: p - (string) result of the query, otherwise none
-    Author: Patrick Earl
-    """
+
     p = None
     p = (Staff.query.filter_by(staffID=staffID).first())
     return p if p else None

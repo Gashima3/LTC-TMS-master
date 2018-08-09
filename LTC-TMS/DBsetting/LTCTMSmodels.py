@@ -96,14 +96,14 @@ class Staff(Base, db.Model):
 
 
 class Request(db.Model):
-    __tablename__="request"
-    requestID=db.Column('requestID', Integer, primary_key=True)
-    userID=db.Column('userID', Integer, index=True)
-    supervisorID=db.Column('supervisorID', Integer, index=True)
-    taskID=db.Column('taskID', Integer, index=True)
-    requestDescription=db.Column('requestDescription', String(255), index=True)
-    isApproved=db.Column('isApproved', Boolean, index=True)
-    dateRequested=db.Column('dateRequested', Date, index=True)
+    __tablename__= "request"
+    requestID= db.Column('requestID', Integer, primary_key=True)
+    userID= db.Column('userID', Integer, index=True)
+    staffID= db.Column('staffID', Integer, index=True)
+    taskID= db.Column('taskID', Integer, index=True)
+    requestDescription= db.Column('requestDescription', String(255), index=True)
+    isApproved= db.Column('isApproved', Boolean, index=True)
+    dateRequested= db.Column('dateRequested', Date, index=True)
 
     def __init__(self):
         pass

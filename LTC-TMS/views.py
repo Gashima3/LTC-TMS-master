@@ -34,9 +34,9 @@ def api_getbyuser(uname):
 def login():
     lForm = LoginForm()
     if lForm.validate_on_submit():
-        if Login.verifyMain(lForm.staffID.data,lForm.password.data):
+        if Login.verifyMain(lForm.staffID.data, lForm.password.data):
             print("login sucessful")
-            return redirect("dashboard", code=302)
+            return redirect("test.html", code=302)
         else:
             print("login failed, try again")
     # form submission was invalid
