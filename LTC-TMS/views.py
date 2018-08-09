@@ -5,6 +5,7 @@ from DBsetting.LTCTMSforms import DetailedStep, MainStep, EditSenior, EditSuper,
     CreateTaskForm, LoginForm, TaskAssignmentForm
 from Function import Api, Login
 from database import *
+
 from flask_login import current_user, login_required, logout_user
 from DBsetting.LTCTMSmodels import Task, Patient, Staff, Request
 from datetime import datetime, timedelta
@@ -36,7 +37,7 @@ def login():
     if lForm.validate_on_submit():
         if Login.verifyMain(lForm.staffID.data, lForm.password.data):
             print("login sucessful")
-            return redirect("Hello.html", code=302)
+            return render_template("Hello.html", code=302)
         else:
             print("login failed, try again")
     # form submission was invalid
